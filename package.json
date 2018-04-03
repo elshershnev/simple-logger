@@ -4,6 +4,7 @@
   "description": "Simple nodejs logger",
   "main": "index.js",
   "scripts": {
+    "pretest": "eslint --ignore-path .gitignore .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/elshershnev/simple-logger/issues"
   },
-  "homepage": "https://github.com/elshershnev/simple-logger#readme"
+  "homepage": "https://github.com/elshershnev/simple-logger#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-strongloop": "^2.1.0"
+  }
 }

@@ -59,8 +59,7 @@ class SimpleLogger {
     log(name, level, logEntry) {
         const len = arguments.length;
 
-        // TODO possible error in case 3 in case of _loggers[name] does't exist
-        switch(len) {
+        switch (len) {
             case 3: break;
             case 2: logEntry = level; level = name; name = 'default'; break;
             case 1: logEntry = name; level = 'INFO'; name = 'default'; break;

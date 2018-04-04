@@ -3,7 +3,6 @@
 
 class TransportBase {
 
-
   constructor(options) {
 
     if (!options) {
@@ -20,7 +19,6 @@ class TransportBase {
   log(item) {
     throw new Error('Not implemented');
   }
-
 }
 
 

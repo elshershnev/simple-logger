@@ -11,7 +11,6 @@ const transportbase = require('./transportbase');
 
 class File extends transportbase.TransportBase {
 
-
   constructor(options) {
 
     super(options);
@@ -80,9 +79,11 @@ class File extends transportbase.TransportBase {
     }
   }
 
+
   stopRotation() {
     clearInterval(this._timerId);
   }
+
 
   _lock() {
     this.isLocked = true;
@@ -104,7 +105,6 @@ class File extends transportbase.TransportBase {
       this._rotationParameters.keepLogs,
       function(){ this._unlock(); }.bind(this)
     );
-
   }
 
 
@@ -215,7 +215,6 @@ class File extends transportbase.TransportBase {
       this._buffer.push(item);
     }
   }
-
 }
 
 module.exports = {

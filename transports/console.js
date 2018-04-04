@@ -6,7 +6,6 @@ const transportbase = require('./transportbase');
 
 class Console extends transportbase.TransportBase {
 
-
   constructor(options) {
 
     super(options);
@@ -18,7 +17,6 @@ class Console extends transportbase.TransportBase {
   log(item) {
     this.writable.log(item);
   }
-
 }
 
 

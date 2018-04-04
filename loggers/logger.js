@@ -6,7 +6,6 @@ const transports = require('../transports');
 
 class Logger {
 
-
   constructor(name, options) {
 
     if (typeof name !== 'string') {
@@ -24,15 +23,15 @@ class Logger {
     if (options.transports) {
       if (Array.isArray(options.transports)) {
         this.transports = [];
-        options.transports.forEach(function(transport) {
+        options.transports.forEach((transport) => {
           if (transport instanceof transports.TransportBase) {
             this.transports.push(transport);
           } else {
             throw new Error('Each transports in transport must ' +
-                            'be inheritor of TransportBase'
+                            'be an inheritor of TransportBase'
             );
           }
-        }.bind(this));
+        });
       } else {
         throw new Error('trasports must be an Array');
       }
@@ -50,15 +49,10 @@ class Logger {
       this.formatter = function(loggerName, JSTime, level, logItemId, logItem) {
         const time = new Date(JSTime).toTimeString();
         const logItemParts = [loggerName.toUpperCase(), time, logItemId, level];
-        if (typeof logItem !== 'object') {
-          logItemParts.push(String(logItem));
-        } else {
-          logItemParts.push(JSON.stringify(logItem));
-        }
+        logItemParts.push(JSON.stringify(logItem));
         return logItemParts.join(' : ');
       };
     }
-
   }
 
 
@@ -82,7 +76,7 @@ class Logger {
       const now = new Date().getTime();
       let logItemId = now.toString(36);
       logItemId += logItemId.split('').filter(() => {
-        return Math.random() - 0.5;
+        return (Math.random() - 0.5) < 0;
       }).join('') + logItemId;
       logItemId = logItemId.slice(10);
 

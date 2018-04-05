@@ -6,22 +6,20 @@ const transportbase = require('./transportbase');
 
 class Console extends transportbase.TransportBase {
 
+  constructor(options) {
 
-    constructor(options) {
+    super(options);
 
-        super(options);
-
-        this.writable = console;
-    }
+    this.writable = console;
+  }
 
 
-    log(item) {
-        this.writable.log(item);
-    }
-
+  log(item) {
+    this.writable.log(item);
+  }
 }
 
 
 module.exports = {
-    Console: Console
+  Console: Console,
 };

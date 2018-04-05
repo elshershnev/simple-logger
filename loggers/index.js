@@ -5,5 +5,5 @@ const logger = require('./logger');
 
 
 module.exports = {
-    Logger: logger.Logger
+  Logger: logger.Logger,
 };

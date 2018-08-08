@@ -113,6 +113,9 @@ class File extends transportbase.TransportBase {
     const tasks = [];
     const names = [];
 
+    // Each log file could be one of two potential names: fileName.N
+    // or fileName.N.gz. We will try to rotate them all. If some file will be
+    // missed we will just pass its deleting and go further.
     for (let i = keepLogs - 2; i > 0; i--) {
       names.push({
         oldFile: path.join(filePath, fileName + '.' + i),
@@ -130,6 +133,7 @@ class File extends transportbase.TransportBase {
 
       let task;
       task = function() {
+        // try to rename file
         fs.rename(oldFile, newFile, function(err) {
           if (err) {
             if (err.code !== 'ENOENT') {
@@ -137,11 +141,14 @@ class File extends transportbase.TransportBase {
               throw new Error('Cannot rename ' + oldFile +
                                     ' to ' + newFile + '. Details: ' + err);
             }
+            // we couldn't rename file file with oldName because it's absent.
+            // Just in case try to remove newFile
             fs.unlink(newFile, function(err) {
-              // TODO to think about throwing an exception here
               if (err) {
-                console.log('Cannot delete file ' + newFile +
-                  'because of error. Details: ' + err);
+                if (err.code !== 'ENOENT') {
+                  console.log('Cannot delete file ' + newFile +
+                    ' because of error. Details: ' + err);
+                }
               }
             });
           }

@@ -205,9 +205,9 @@ class File extends transportbase.TransportBase {
       if (!this._buffer.length) {
         this._log(item);
       } else {
-        this._buffer.forEach(function(item){
+        this._buffer.forEach((item) => {
           this._log(item);
-        }.bind(this));
+        });
         this._buffer = [];
         this._log(item);
       }

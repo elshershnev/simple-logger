@@ -27,7 +27,7 @@ class Logger {
           if (transport instanceof transports.TransportBase) {
             this.transports.push(transport);
           } else {
-            throw new Error('Each transports in transport must ' +
+            throw new Error('Each transport in transports must ' +
                             'be an inheritor of TransportBase'
             );
           }

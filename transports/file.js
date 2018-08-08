@@ -72,7 +72,7 @@ class File extends transportbase.TransportBase {
           options.rotationParameters.keepLogs || 30;
 
         this._timerId = setInterval(
-          function(){ this.rotate(); }.bind(this),
+          () => { this.rotate(); },
           this._rotationParameters.interval
         );
       }
@@ -103,7 +103,7 @@ class File extends transportbase.TransportBase {
       this._filePath,
       this._rotationParameters.compress,
       this._rotationParameters.keepLogs,
-      function(){ this._unlock(); }.bind(this)
+      () => { this._unlock(); }
     );
   }
 

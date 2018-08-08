@@ -48,9 +48,13 @@ class Logger {
     } else {
       this.formatter = function(loggerName, JSTime, level, logItemId, logItem) {
         const time = new Date(JSTime).toTimeString();
-        const logItemParts = [loggerName.toUpperCase(), time, logItemId, level];
-        logItemParts.push(JSON.stringify(logItem));
-        return logItemParts.join(' : ');
+        return [
+          loggerName.toUpperCase(),
+          time,
+          logItemId,
+          level,
+          JSON.stringify(logItem)
+        ].join(' : ');
       };
     }
   }

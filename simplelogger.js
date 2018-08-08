@@ -21,11 +21,7 @@ class SimpleLogger {
 
 
   getLoggerNames() {
-    const names = [];
-    for (let name in this._loggers) {
-      names.push(name);
-    }
-    return names;
+    return Object.keys(this._loggers);
   }
 
 
